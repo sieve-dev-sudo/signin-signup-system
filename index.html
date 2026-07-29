@@ -8,9 +8,25 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="container">
 
-  <div class="sign-in-container">
+  <div class="form-container sign-up-container">
+    <form onsubmit="return false;">
+      <h1>Create account</h1>
+      <div class="social-container">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="X">x</a>
+      </div>
+      <span>or use your email for registration</span>
+      <input type="text" placeholder="Name">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button style="margin-top:16px;">Sign up</button>
+    </form>
+  </div>
+
+  <div class="form-container sign-in-container">
     <form onsubmit="return false;">
       <h1>Sign in to Website</h1>
       <div class="social-container">
@@ -26,13 +42,23 @@
     </form>
   </div>
 
-  <div class="overlay-panel">
-    <h2>Hello, friend!</h2>
-    <p>Enter your personal details and start your journey with us.</p>
-    <button class="ghost">Sign up</button>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h2>Welcome back!</h2>
+        <p>Already have an account? Sign in to keep exploring with us.</p>
+        <button class="ghost" id="signIn">Sign in</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h2>Hello, friend!</h2>
+        <p>Enter your personal details and start your journey with us.</p>
+        <button class="ghost" id="signUp">Sign up</button>
+      </div>
+    </div>
   </div>
 
 </div>
 
+<script src="script.js"></script>
 </body>
 </html>

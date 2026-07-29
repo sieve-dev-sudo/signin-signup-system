@@ -21,37 +21,46 @@ body {
   width: 900px;
   max-width: 100%;
   min-height: 500px;
-  display: flex;
+}
+
+.form-container {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
 }
 
 .sign-in-container {
+  left: 0;
   width: 50%;
+  z-index: 2;
 }
 
-.overlay-panel {
-  width: 50%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0 45px;
-  text-align: center;
-  overflow: hidden;
+.container.right-panel-active .sign-in-container {
+  transform: translateX(100%);
 }
 
-.overlay-panel::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(180,178,169,0.5);
-  width: 220px;
-  height: 220px;
-  bottom: -60px;
-  right: -60px;
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0.6s;
+}
+
+@keyframes show {
+  0%, 49.99% { opacity: 0; z-index: 1; }
+  50%, 100% { opacity: 1; z-index: 5; }
 }
 
 form {
+  background: #F0EEE7;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,15 +75,6 @@ h1 {
   margin: 0 0 20px;
   color: #2c2c2c;
   font-size: 26px;
-}
-
-h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #2c2c2c; }
-
-.overlay-panel p {
-  font-size: 13px;
-  color: #777;
-  line-height: 1.6;
-  margin: 0 0 25px;
 }
 
 .social-container {
@@ -167,32 +167,167 @@ button.ghost:hover {
     inset -4px -4px 8px #ffffff;
 }
 
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  background: #F0EEE7;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay { transform: translateX(50%); }
+
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 45px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transition: transform 0.6s ease-in-out;
+}
+
+.overlay-panel::before,
+.overlay-panel::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(180,178,169,0.5);
+}
+
+.overlay-left::before { width: 220px; height: 220px; top: -60px; left: -60px; }
+.overlay-right::after { width: 220px; height: 220px; bottom: -60px; right: -60px; }
+
+.overlay-left {
+  transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #2c2c2c; }
+.overlay p {
+  font-size: 13px;
+  color: #777;
+  line-height: 1.6;
+  margin: 0 0 25px;
+}
+
 @media (max-width: 700px) {
-  body { padding: 20px 14px; }
+  body { padding: 20px 14px; min-height: 100vh; }
 
   .container {
     width: 100%;
     min-height: auto;
     border-radius: 22px;
-    flex-direction: column;
     box-shadow:
       10px 10px 20px #d3d1cb,
       -10px -10px 20px #ffffff;
   }
 
-  .sign-in-container,
-  .overlay-panel {
+  /* stack instead of slide on small screens */
+  .form-container {
+    position: static;
     width: 100%;
+    opacity: 1;
+    transform: none !important;
+    transition: none;
+    animation: none !important;
+    display: none;
   }
 
+  .sign-in-container { display: block; }
+  .sign-up-container { display: none; }
+
+  .container.right-panel-active .sign-in-container { display: none; }
+  .container.right-panel-active .sign-up-container { display: block; z-index: auto; }
+
   form { padding: 40px 26px 30px; }
-  .overlay-panel { padding: 24px 26px 34px; }
 
   h1 { font-size: 22px; }
-  h2 { font-size: 19px; margin-bottom: 8px; }
 
   .social-container a { width: 38px; height: 38px; }
-  button.ghost { padding: 11px 34px; font-size: 11px; }
+
+  /* collapse the sliding overlay into a simple prompt under the form */
+  .overlay-container {
+    position: static;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    transform: none !important;
+    z-index: auto;
+  }
+
+  .overlay {
+    position: static;
+    width: 100%;
+    left: 0;
+    transform: none !important;
+    transition: none;
+  }
+
+  .overlay-panel {
+    position: static;
+    width: 100%;
+    padding: 24px 26px 34px;
+    display: none;
+  }
+
+  .overlay-panel::before,
+  .overlay-panel::after { display: none; }
+
+  h2 { font-size: 19px; margin-bottom: 8px; }
+  .overlay p { margin-bottom: 16px; }
+
+  /* keep both buttons the same, moderate size on mobile */
+  button,
+  button.ghost {
+    width: auto;
+    min-width: 150px;
+    padding: 13px 30px;
+    font-size: 12px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* default state: sign-in showing -> prompt to sign up */
+  .overlay-right { display: flex; }
+  .overlay-left { display: none; }
+
+  /* active state: sign-up showing -> prompt to sign in */
+  .container.right-panel-active .overlay-right { display: none; }
+  .container.right-panel-active .overlay-left { display: flex; }
 }
 
 @media (max-width: 380px) {

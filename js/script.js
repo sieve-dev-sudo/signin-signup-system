@@ -1,9 +1,13 @@
 const container = document.getElementById('container');
 
-document.getElementById('signUp').addEventListener('click', () => {
-  container.classList.add('right-panel-active');
+document.querySelectorAll('[data-switch="signup"]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    container.classList.add('right-panel-active');
+  });
 });
 
-document.getElementById('signIn').addEventListener('click', () => {
-  container.classList.remove('right-panel-active');
+document.querySelectorAll('[data-switch="signin"]').forEach((btn) => {
+  btn.addEventListener('click', () => {
+    container.classList.remove('right-panel-active');
+  });
 });

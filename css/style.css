@@ -72,7 +72,7 @@ form {
 
 h1 {
   font-weight: 700;
-  margin: 0 0 20px;
+  margin: 0 0 26px;
   color: #2c2c2c;
   font-size: 26px;
 }
@@ -82,6 +82,8 @@ h1 {
   display: flex;
   gap: 12px;
 }
+
+.mobile-social { display: none; }
 
 .social-container a {
   width: 42px;
@@ -241,6 +243,12 @@ input.input-error {
 
 .forgot { margin: 0; }
 
+.mobile-actions {
+  width: 100%;
+}
+
+.mobile-switch { display: none; }
+
 /* button loading spinner */
 button.loading {
   color: transparent;
@@ -380,7 +388,7 @@ button.ghost:hover {
   border: 1px solid rgba(180,178,169,0.5);
 }
 
-.overlay-left::before { width: 220px; height: 220px; top: -60px; left: -60px; }
+.overlay-left::before { width: 220px; height: 220px; bottom: -60px; left: -60px; }
 .overlay-right::after { width: 220px; height: 220px; bottom: -60px; right: -60px; }
 
 .overlay-left {
@@ -448,11 +456,15 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #2c2c2c; }
     border-radius: 10px;
   }
 
-  .password-wrapper input { padding-right: 38px; }
+  .password-wrapper input { padding-right: 26px; }
 
-  .toggle-password { right: 0; padding: 8px 10px 8px 6px; }
+  .toggle-password { right: -4px; padding: 8px 6px 8px 4px; }
 
   .social-container a { width: 38px; height: 38px; }
+
+  .mobile-social { display: flex; justify-content: center; margin: 4px 0 16px; }
+
+  .overlay-panel .social-container { display: none; }
 
   /* collapse the sliding overlay into a simple prompt under the form */
   .overlay-container {
@@ -479,6 +491,8 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #2c2c2c; }
     display: none;
   }
 
+  .overlay-panel h2 { display: none; }
+
   .overlay-panel::before,
   .overlay-panel::after { display: none; }
 
@@ -495,6 +509,24 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #2c2c2c; }
     margin-left: auto;
     margin-right: auto;
   }
+
+  .mobile-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  .mobile-actions button {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .mobile-switch { display: flex; align-items: center; justify-content: center; }
+
+  /* hide the overlay's own Sign in/Sign up buttons on mobile — replaced by .mobile-switch */
+  .overlay-panel button.ghost { display: none; }
 
   /* default state: sign-in showing -> prompt to sign up */
   .overlay-right { display: flex; }

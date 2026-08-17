@@ -126,3 +126,43 @@ if (signUpForm) {
     });
   });
 }
+
+// ---------- Forgot password validation ----------
+const forgotForm = document.getElementById('forgotForm');
+
+if (forgotForm) {
+  const forgotEmail = document.getElementById('forgotEmail');
+  const forgotEmailError = document.getElementById('forgotEmailError');
+
+  forgotForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    clearError(forgotEmail, forgotEmailError);
+
+    if (forgotEmail.value.trim() === '') {
+      showError(forgotEmail, forgotEmailError, 'Email is required');
+      return;
+    }
+    if (!isValidEmail(forgotEmail.value.trim())) {
+      showError(forgotEmail, forgotEmailError, 'Please enter a valid email');
+      return;
+    }
+
+    const btn = document.getElementById('forgotSubmit');
+    setLoading(btn, true);
+
+    // simulate a network request - replace with your real API call
+    setTimeout(() => {
+      setLoading(btn, false);
+
+      const sentTo = document.getElementById('forgotSentTo');
+      if (sentTo) sentTo.textContent = forgotEmail.value.trim();
+
+      document.getElementById('forgotStepForm').hidden = true;
+      document.getElementById('forgotStepSuccess').hidden = false;
+    }, 1200);
+  });
+
+  forgotEmail.addEventListener('input', () => {
+    clearError(forgotEmail, forgotEmailError);
+  });
+}

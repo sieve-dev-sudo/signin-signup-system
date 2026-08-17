@@ -128,13 +128,13 @@ if (signUpForm) {
 }
 
 // ---------- Forgot password validation ----------
-const forgotForm = document.getElementById('forgotForm');
+const forgotFormEl = document.getElementById('forgotForm');
 
-if (forgotForm) {
+if (forgotFormEl) {
   const forgotEmail = document.getElementById('forgotEmail');
   const forgotEmailError = document.getElementById('forgotEmailError');
 
-  forgotForm.addEventListener('submit', (e) => {
+  forgotFormEl.addEventListener('submit', (e) => {
     e.preventDefault();
     clearError(forgotEmail, forgotEmailError);
 

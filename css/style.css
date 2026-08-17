@@ -435,6 +435,102 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
   margin: 0 0 25px;
 }
 
+/* forgot password modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease;
+  z-index: 1000;
+}
+
+.modal-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 12px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+  padding: 32px 28px 28px;
+  position: relative;
+  text-align: center;
+  transform: translateY(-12px) scale(0.98);
+  transition: transform 0.2s ease;
+}
+
+.modal-overlay.show .modal {
+  transform: translateY(0) scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #F0F2F5;
+  border: none;
+  color: #65676B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.modal-close:hover { background: #E4E6EB; }
+
+.modal h2 {
+  color: #1C1E21;
+  font-size: 20px;
+  margin: 0 0 10px;
+}
+
+.modal-desc {
+  color: #65676B;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0 0 20px;
+}
+
+.modal form {
+  padding: 0;
+  height: auto;
+}
+
+.modal input {
+  text-align: left;
+}
+
+.modal button[type="submit"],
+.modal button#forgotBackToSignIn {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.modal-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #E7F3FF;
+  color: #1877F2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
 @media (max-width: 700px) {
   body { padding: 20px 14px; min-height: 100vh; }
 

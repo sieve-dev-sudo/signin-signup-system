@@ -90,7 +90,7 @@
           <input type="checkbox" id="rememberMe">
           <span>Remember me</span>
         </label>
-        <a href="#" class="forgot">Forgot your password?</a>
+        <a href="#" class="forgot" id="forgotPasswordLink">Forgot your password?</a>
       </div>
 
       <div class="mobile-actions">
@@ -137,6 +137,36 @@
     </div>
   </div>
 
+</div>
+
+<div class="modal-overlay" id="forgotModal" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="forgotModalTitle">
+    <button type="button" class="modal-close" id="forgotModalClose" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+
+    <div class="modal-step" id="forgotStepForm">
+      <h2 id="forgotModalTitle">Reset your password</h2>
+      <p class="modal-desc">Enter the email linked to your account and we'll send you a reset link.</p>
+
+      <form id="forgotForm" novalidate>
+        <label for="forgotEmail" class="sr-only">Email</label>
+        <input type="email" id="forgotEmail" name="email" placeholder="Email" aria-label="Email" required>
+        <span class="error-message" id="forgotEmailError"></span>
+
+        <button type="submit" id="forgotSubmit">Send reset link</button>
+      </form>
+    </div>
+
+    <div class="modal-step" id="forgotStepSuccess" hidden>
+      <div class="modal-success-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg>
+      </div>
+      <h2>Check your email</h2>
+      <p class="modal-desc">If an account exists for <strong id="forgotSentTo"></strong>, a reset link is on its way.</p>
+      <button type="button" id="forgotBackToSignIn">Back to sign in</button>
+    </div>
+  </div>
 </div>
 
 <div id="toast" class="toast"></div>

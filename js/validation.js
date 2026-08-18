@@ -159,6 +159,11 @@ if (forgotFormEl) {
 
       document.getElementById('forgotStepForm').hidden = true;
       document.getElementById('forgotStepSuccess').hidden = false;
+
+      // auto-dismiss the modal after 10s so the user doesn't have to click "Back to sign in"
+      if (typeof scheduleForgotAutoClose === 'function') {
+        scheduleForgotAutoClose(10000);
+      }
     }, 1200);
   });
 

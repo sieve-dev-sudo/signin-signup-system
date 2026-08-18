@@ -379,17 +379,6 @@ button.ghost:hover {
   color: #fff;
 }
 
-.overlay-panel::before,
-.overlay-panel::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,0.25);
-}
-
-.overlay-left::before { width: 220px; height: 220px; bottom: -60px; left: -60px; }
-.overlay-right::after { width: 220px; height: 220px; bottom: -60px; right: -60px; }
-
 .overlay-left {
   transform: translateX(-20%);
 }
@@ -607,9 +596,6 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
   }
 
   .overlay-panel h2 { display: none; }
-
-  .overlay-panel::before,
-  .overlay-panel::after { display: none; }
 
   h2 { font-size: 19px; margin-bottom: 8px; }
   .overlay p { margin-bottom: 16px; }

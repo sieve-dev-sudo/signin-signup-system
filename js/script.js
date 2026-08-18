@@ -22,8 +22,27 @@ const forgotForm = document.getElementById('forgotForm');
 const forgotEmail = document.getElementById('forgotEmail');
 const forgotEmailError = document.getElementById('forgotEmailError');
 
+let forgotAutoCloseTimer = null;
+
+function clearForgotAutoClose() {
+  if (forgotAutoCloseTimer) {
+    clearTimeout(forgotAutoCloseTimer);
+    forgotAutoCloseTimer = null;
+  }
+}
+
+// called from validation.js once the "Check your email" step is shown,
+// so the modal closes on its own after `delay` ms without needing a click
+function scheduleForgotAutoClose(delay) {
+  clearForgotAutoClose();
+  forgotAutoCloseTimer = setTimeout(() => {
+    closeForgotModal();
+  }, delay);
+}
+
 function openForgotModal() {
   if (!forgotModal) return;
+  clearForgotAutoClose();
   // reset to the email-entry step every time it's opened
   forgotStepForm.hidden = false;
   forgotStepSuccess.hidden = true;
@@ -38,6 +57,7 @@ function openForgotModal() {
 
 function closeForgotModal() {
   if (!forgotModal) return;
+  clearForgotAutoClose();
   forgotModal.classList.remove('show');
   forgotModal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';

@@ -451,7 +451,7 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
   max-width: 380px;
   border-radius: 12px;
   box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
-  padding: 32px 28px 28px;
+  padding: 46px 26px 28px;
   position: relative;
   text-align: center;
   transform: translateY(-12px) scale(0.98);
@@ -464,27 +464,32 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
 
 .modal-close {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 14px;
+  right: 14px;
   width: 30px;
   height: 30px;
-  border-radius: 50%;
+  border-radius: 8px;
   background: #F0F2F5;
   border: none;
   color: #65676B;
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
   cursor: pointer;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
 }
 
 .modal-close:hover { background: #E4E6EB; }
+.modal-close:active { background: #E4E6EB; transform: scale(0.92); }
 
 .modal h2 {
   color: #1C1E21;
   font-size: 20px;
   margin: 0 0 10px;
+  padding: 0 18px;
 }
 
 .modal-desc {

@@ -521,15 +521,18 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
 }
 
 @media (max-width: 700px) {
-  body { padding: 20px 14px; min-height: 100vh; }
+  body { padding: 24px 16px; min-height: 100vh; align-items: flex-start; }
 
   .container {
     width: 100%;
     min-height: auto;
-    border-radius: 12px;
-    box-shadow:
-      0 1px 3px rgba(0,0,0,0.08),
-      0 4px 12px rgba(0,0,0,0.10);
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
   }
 
   /* stack instead of slide on small screens */
@@ -541,6 +544,12 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
     transition: none;
     animation: none !important;
     display: none;
+    background: #FFFFFF;
+    border-radius: 20px;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.06),
+      0 10px 28px rgba(0,0,0,0.09);
+    overflow: hidden;
   }
 
   .sign-in-container { display: block; }
@@ -549,15 +558,15 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
   .container.right-panel-active .sign-in-container { display: none; }
   .container.right-panel-active .sign-up-container { display: block; z-index: auto; }
 
-  form { padding: 36px 26px 18px; }
+  form { padding: 34px 24px 26px; }
 
-  h1 { font-size: 22px; }
+  h1 { font-size: 21px; }
 
   input {
-    padding: 10px 14px;
+    padding: 12px 14px;
     margin: 5px 0;
     font-size: 13px;
-    border-radius: 8px;
+    border-radius: 10px;
   }
 
   .password-wrapper input { padding-right: 26px; }
@@ -570,7 +579,7 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
 
   .overlay-panel .social-container { display: none; }
 
-  /* collapse the sliding overlay into a simple prompt under the form */
+  /* collapse the sliding overlay into its own compact promo card under the form */
   .overlay-container {
     position: static;
     width: 100%;
@@ -578,6 +587,10 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
     overflow: visible;
     transform: none !important;
     z-index: auto;
+    border-radius: 20px;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.06),
+      0 10px 28px rgba(24,119,242,0.18);
   }
 
   .overlay {
@@ -586,19 +599,37 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
     left: 0;
     transform: none !important;
     transition: none;
+    border-radius: 20px;
   }
 
   .overlay-panel {
     position: static;
     width: 100%;
-    padding: 6px 26px 32px;
+    padding: 26px 26px 28px;
     display: none;
   }
 
   .overlay-panel h2 { display: none; }
 
+  .overlay-panel::before {
+    content: "";
+    display: block;
+    width: 42px;
+    height: 42px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='20' height='20' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
   h2 { font-size: 19px; margin-bottom: 8px; }
-  .overlay p { margin-bottom: 16px; }
+
+  .overlay p {
+    margin: 0 0 4px;
+    font-size: 13px;
+  }
 
   /* keep both buttons the same, moderate size on mobile */
   button,

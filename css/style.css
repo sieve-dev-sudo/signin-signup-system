@@ -84,6 +84,7 @@ h1 {
 }
 
 .mobile-social { display: none; }
+.mobile-tagline { display: none; }
 
 .social-container a {
   width: 42px;
@@ -526,13 +527,12 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
   .container {
     width: 100%;
     min-height: auto;
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
-    overflow: visible;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
+    background: #FFFFFF;
+    border-radius: 20px;
+    box-shadow:
+      0 1px 2px rgba(0,0,0,0.06),
+      0 10px 28px rgba(0,0,0,0.09);
+    overflow: hidden;
   }
 
   /* stack instead of slide on small screens */
@@ -544,12 +544,6 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
     transition: none;
     animation: none !important;
     display: none;
-    background: #FFFFFF;
-    border-radius: 20px;
-    box-shadow:
-      0 1px 2px rgba(0,0,0,0.06),
-      0 10px 28px rgba(0,0,0,0.09);
-    overflow: hidden;
   }
 
   .sign-in-container { display: block; }
@@ -558,7 +552,7 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
   .container.right-panel-active .sign-in-container { display: none; }
   .container.right-panel-active .sign-up-container { display: block; z-index: auto; }
 
-  form { padding: 34px 24px 26px; }
+  form { padding: 34px 24px 30px; }
 
   h1 { font-size: 21px; }
 
@@ -577,54 +571,18 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
 
   .mobile-social { display: flex; justify-content: center; margin: 4px 0 16px; }
 
-  /* collapse the sliding overlay into its own compact promo card under the form */
-  .overlay-container {
-    position: static;
-    width: 100%;
-    height: auto;
-    overflow: visible;
-    transform: none !important;
-    z-index: auto;
-    border-radius: 20px;
-    box-shadow:
-      0 1px 2px rgba(0,0,0,0.06),
-      0 10px 28px rgba(24,119,242,0.18);
-  }
-
-  .overlay {
-    position: static;
-    width: 100%;
-    left: 0;
-    transform: none !important;
-    transition: none;
-    border-radius: 20px;
-  }
-
-  .overlay-panel {
-    position: static;
-    width: 100%;
-    padding: 26px 26px 28px;
-    display: none;
-  }
-
-  .overlay-panel h2 { display: none; }
-
-  .overlay-panel .social-container {
-    margin: 0 0 16px;
-    justify-content: center;
-  }
-
-  .overlay-panel .social-container a {
-    width: 38px;
-    height: 38px;
-  }
-
-  h2 { font-size: 19px; margin-bottom: 8px; }
-
-  .overlay p {
-    margin: 0 0 4px;
+  .mobile-tagline {
+    display: block;
+    text-align: center;
+    color: #65676B;
     font-size: 13px;
+    line-height: 1.6;
+    margin: 18px 0 0;
+    padding: 0 8px;
   }
+
+  /* the sliding blue panel is desktop-only; mobile shows .mobile-tagline instead */
+  .overlay-container { display: none; }
 
   /* keep both buttons the same, moderate size on mobile */
   button,
@@ -651,17 +609,6 @@ h2 { font-size: 24px; font-weight: 700; margin: 0 0 16px; color: #fff; }
   }
 
   .mobile-switch { display: flex; align-items: center; justify-content: center; }
-
-  /* hide the overlay's own Sign in/Sign up buttons on mobile — replaced by .mobile-switch */
-  .overlay-panel button.ghost { display: none; }
-
-  /* default state: sign-in showing -> prompt to sign up */
-  .overlay-right { display: flex; }
-  .overlay-left { display: none; }
-
-  /* active state: sign-up showing -> prompt to sign in */
-  .container.right-panel-active .overlay-right { display: none; }
-  .container.right-panel-active .overlay-left { display: flex; }
 }
 
 @media (max-width: 380px) {
